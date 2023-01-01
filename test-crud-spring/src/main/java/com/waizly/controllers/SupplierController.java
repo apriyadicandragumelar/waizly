@@ -30,7 +30,8 @@ public class SupplierController {
     private ModelMapper modelMapper;
 
     @PostMapping
-    @Operation(summary = "Create Supplier", description = "Method/function ini adalah insert atau create data baru category")
+    @Operation(summary = "Create Supplier", 
+               description = "Method/function ini adalah insert atau create data baru category")
     public ResponseEntity<ResponseData<Supplier>> create(@Valid @RequestBody SupplierData supplierData, Errors errors) {
         ResponseData<Supplier> responseData = new ResponseData<>();
         if(errors.hasErrors()) {
@@ -49,26 +50,29 @@ public class SupplierController {
     }
 
     @GetMapping
-    @Operation(summary = "Get Supplier", description = "Method/function ini adalah menampilkan data supplier")
+    @Operation(summary = "Get Supplier", 
+               description = "Method/function ini adalah menampilkan data supplier")
     public Iterable<Supplier> findAll() {
         return supplierService.findAll();
     }
 
 
     @GetMapping("{name}") 
-    @Operation(summary = "Find Supplier", description = "Method/function ini adalah mencari data supplier berdasarkan nama")
+    @Operation(summary = "Find Supplier", 
+               description = "Method/function ini adalah mencari data supplier berdasarkan nama")
     public List<Supplier> findByName(@PathVariable("name")String name) {
         return supplierService.findByName("%"+name+"%");
     }
 
     @PutMapping("{id}")
-    @Operation(summary = "Update Supplier", description = "Method/function ini adalah update data supplier")
-    public ResponseEntity<ResponseData<Supplier>> update(@PathVariable("id") Long supplierId, @Valid @RequestBody SupplierData supplierData, Errors errors) {
+    @Operation(summary = "Update Supplier", 
+               description = "Method/function ini adalah update data supplier")
+    public ResponseEntity<ResponseData<Supplier>> update(@PathVariable("id") Long supplierId, @Valid 
+                                                         @RequestBody SupplierData supplierData, Errors errors) {
         ResponseData<Supplier> responseData = new ResponseData<>();
         if(errors.hasErrors()) {
             for (ObjectError error : errors.getAllErrors()) {
-                responseData.getMessages().add(error.getDefaultMessage());
-                
+                responseData.getMessages().add(error.getDefaultMessage());    
             }
             responseData.setStatus(false);
             responseData.setData(null);
