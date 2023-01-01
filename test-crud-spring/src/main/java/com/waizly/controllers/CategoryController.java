@@ -29,7 +29,8 @@ public class CategoryController {
     private ModelMapper modelMapper;
 
     @PostMapping
-    @Operation(summary = "Create Category", description = "Method/function ini adalah insert data atau create data category ")
+    @Operation(summary = "Create Category", 
+               description = "Method/function ini adalah insert data atau create data category ")
     public ResponseEntity<ResponseData<Category>> create(@Valid @RequestBody CategoryData categoryData, Errors errors) {
         ResponseData<Category> responseData = new ResponseData<>();
         if(errors.hasErrors()) {
@@ -47,20 +48,24 @@ public class CategoryController {
     }
 
     @GetMapping
-    @Operation(summary = "Get Category", description = "Method/function ini adalah menampilkan data category ")
+    @Operation(summary = "Get Category", 
+               description = "Method/function ini adalah menampilkan data category ")
     public Iterable<Category> findAll(){
         return categoryService.findAll();
     }
 
     @GetMapping("{name}")
-    @Operation(summary = "Get Category nama",description = "Method/function ini adalah mencari category berdasarkan nama")
+    @Operation(summary = "Get Category nama",
+               description = "Method/function ini adalah mencari category berdasarkan nama")
     public List<Category> findById(String name) {
         return categoryService.findByName("%"+name+"%");
     }
 
     @PutMapping("{id}")
-    @Operation(summary = "Update Category", description = "Method/function ini adalah update data category")
-    public ResponseEntity<ResponseData<Category>> update(@PathVariable("id") Long categoryId, @Valid @RequestBody CategoryData categoryData, Errors errors) {
+    @Operation(summary = "Update Category", 
+              description = "Method/function ini adalah update data category")
+    public ResponseEntity<ResponseData<Category>> update(@PathVariable("id") Long categoryId, @Valid @RequestBody 
+                                                          CategoryData categoryData, Errors errors) {
         ResponseData<Category> responseData = new ResponseData<>();
         if(errors.hasErrors()) {
             for (ObjectError error : errors.getAllErrors()) {
