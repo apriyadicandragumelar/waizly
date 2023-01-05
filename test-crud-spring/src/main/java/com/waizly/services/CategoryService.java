@@ -37,14 +37,16 @@ public class CategoryService {
         return oldCategory;
     }
 
-    //find name
+    //find id
     public List<Category> findByName(String name) {
         return categoryRepo.findCategoryByName(name);
     }
-    
+       
+
     //find all
     public Iterable<Category> findAll() {
         return categoryRepo.findAll();
     }
 }
+
 

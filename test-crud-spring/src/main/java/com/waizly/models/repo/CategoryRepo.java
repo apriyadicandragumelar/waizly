@@ -15,4 +15,5 @@ public interface CategoryRepo extends JpaRepository <Category, Long> {
 
     @Query("SELECT c FROM Category c WHERE c.name Like :name")
     public List<Category> findCategoryByName(@PathParam("name") String name);
+
 }

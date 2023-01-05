@@ -9,8 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 
 
 import com.waizly.models.entity.Supplier;
-
-
 public interface SupplierRepo extends JpaRepository<Supplier, Long> {
     
     @Query("SELECT s FROM Supplier s WHERE s.name LIKE :name")

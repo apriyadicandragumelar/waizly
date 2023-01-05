@@ -14,59 +14,64 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name = "supplier")
-public class Supplier implements Serializable{
+// import com.fasterxml.jackson.annotation.JsonBackReference;
 
-    private static final long serialVersionUID = 1L;
+    @Entity
+    @Table(name = "supplier")
+    public class Supplier implements Serializable{
+
+        private static final long serialVersionUID = 1L;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Column(length = 100, nullable=false)
-    private String name;
+        @Column(length = 100, nullable=false)
+        private String name;
 
-    @Column(length = 100, nullable=false)
-    private String address;
+        @Column(length = 100, nullable=false)
+        private String address;
 
-    @Column(length = 100, nullable=false, unique = true)
-    private String email;
+        @Column(length = 100, nullable=false, unique = true)
+        private String email;
 
-    @ManyToMany(mappedBy = "suppliers")
-    private Set<Product> products;
+        @ManyToMany(mappedBy = "suppliers")
+        // @JsonBackReference
+        private Set<Product> products;
         
-    @JsonGetter
-    public Long getId() {
-        return id;
-    }
+        @JsonGetter
+        public Long getId() {
+            return id;
+        }
 
-    @JsonIgnore
-    public void setId(Long id) {
-        this.id = id;
-    }
+        @JsonIgnore
+        public void setId(Long id) {
+            this.id = id;
+        }
 
-    public String getName() {
-        return name;
-    }
+        public String getName() {
+            return name;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        public void setName(String name) {
+            this.name = name;
+        }
 
-    public String getAddress() {
-        return address;
-    }
+        public String getAddress() {
+            return address;
+        }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+        public void setAddress(String address) {
+            this.address = address;
+        }
 
-    public String getEmail() {
-        return email;
-    }
+        public String getEmail() {
+            return email;
+        }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }        
+        public void setEmail(String email) {
+            this.email = email;
+        }
+        
 }
+

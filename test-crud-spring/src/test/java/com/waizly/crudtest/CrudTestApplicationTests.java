@@ -1,10 +1,10 @@
-package com.waizly.test;
+package com.waizly.crudtest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TestApplicationTests {
+class CrudTestApplicationTests {
 
 	@Test
 	void contextLoads() {

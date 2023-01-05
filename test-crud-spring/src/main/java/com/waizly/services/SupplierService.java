@@ -18,7 +18,8 @@ public class SupplierService {
     
     @Autowired
     private SupplierRepo supplierRepo;
- 
+
+    
     //post
     public Supplier create(Supplier supplier) {
         return supplierRepo.save(supplier);
@@ -37,7 +38,7 @@ public class SupplierService {
         return oldSupplier;
     }
     
-    //get name
+    //get id
     public List<Supplier> findByName(String name) {
         return supplierRepo.findBySupplierName(name);
     }
@@ -46,5 +47,5 @@ public class SupplierService {
     public Iterable<Supplier> findAll() {
         return supplierRepo.findAll();
     }
-
+  
 }

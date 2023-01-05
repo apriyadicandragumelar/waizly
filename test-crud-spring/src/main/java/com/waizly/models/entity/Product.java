@@ -53,6 +53,8 @@ public class Product implements Serializable {
     @JoinTable(name ="product_supplier", joinColumns = 
     @JoinColumn(name = "product_id"),inverseJoinColumns = 
     @JoinColumn(name = "supplier_id"))
+
+    // @JsonManagedReference
     private Set<Supplier> suppliers;
 
     public Product() {}
@@ -114,3 +116,4 @@ public class Product implements Serializable {
         this.suppliers = suppliers;
     }
 }
+
