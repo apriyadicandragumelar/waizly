@@ -48,7 +48,7 @@ public class JurusanController {
     @POST
     @Operation(summary = "Create Jurusan", 
                description = "Method/function ini adalah untuk create/insert data jurusan baru")
-    public Jurusan create(@Valid Jurusan jurusan) {
+    public Response create(@Valid Jurusan jurusan) {
         return jurusanService.create(jurusan);
     }
 

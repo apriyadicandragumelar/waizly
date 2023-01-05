@@ -1,6 +1,7 @@
 package com.waizly.models;
 
 import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
+@Table(name = "jurusan")
 public class Jurusan extends PanacheEntityBase {
     
     @Id
@@ -26,10 +28,10 @@ public class Jurusan extends PanacheEntityBase {
     @NotBlank(message = "jenjang is required")
     private String jenjang;
     
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "jurusan_id", referencedColumnName = "id")
-    public List<Mahasiswa> mahasiswaList;
-
+    private List<Mahasiswa> mahasiswaList;
     
     @JsonGetter
     public Long getId() {
@@ -40,7 +42,7 @@ public class Jurusan extends PanacheEntityBase {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public String getKodeJurusan() {
         return kodeJurusan;
     }
@@ -65,11 +67,11 @@ public class Jurusan extends PanacheEntityBase {
         this.jenjang = jenjang;
     }
 
-//   public List<Mahasiswa> getMahasiswaList() {
-//         return mahasiswaList;
-//     }
+    public List<Mahasiswa> getMahasiswaList() {
+        return mahasiswaList;
+    }
 
-//     public void setMahasiswaList(List<Mahasiswa> mahasiswaList) {
-//         this.mahasiswaList = mahasiswaList;
-//     }
+    public void setMahasiswaList(List<Mahasiswa> mahasiswaList) {
+        this.mahasiswaList = mahasiswaList;
+    }  
 }

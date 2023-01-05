@@ -44,17 +44,9 @@ public class MatakuliahController {
     }
 
     @POST
-    @Path("{idMatakuliah}/mahasiswalist/{idMahasiswa}")
-    @Operation(summary = "createMatakuliah - Mahasiswa", 
-               description = "Method/function ini adalah create/insert data mahasiswa berdasarkan id kedalam id matakuliah")
-    public List<Matakuliah> addMatakuliah(@PathParam("idMatakuliah") Long idMatakuliah, @PathParam("idMahasiswa") Long idMahasiswa) {
-        return matakuliahService.addMatakuliah(idMatakuliah, idMahasiswa);
-    } 
-
-    @POST
     @Operation(summary = "Create Matakuliah", 
                description = "Method/function ini adalah insert atau create data baru matakuliah")
-    public Matakuliah createMatakuliah(@Valid Matakuliah matakuliah) {
+    public Response createMatakuliah(@Valid Matakuliah matakuliah) {
         return matakuliahService.create(matakuliah);
     }
 

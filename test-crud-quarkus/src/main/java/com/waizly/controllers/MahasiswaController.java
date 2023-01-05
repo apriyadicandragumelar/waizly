@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
-
 import com.waizly.models.Mahasiswa;
 import com.waizly.service.MahasiswaService;
 
@@ -48,15 +47,23 @@ public class MahasiswaController {
     @Operation(summary = "Create Mahasiswa", 
                description = "Method/function ini adalah create/insert mahasiswa berdsarkan id jurusan")
     //model mapper atau data transfer object di controller
-    public List<Mahasiswa> create(@PathParam("idJurusan") Long idJurusan, @Valid Mahasiswa mahasiswa) {
-        return mahasiswaService.create(idJurusan, mahasiswa);
+    public Response createMahasiswa(@PathParam("idJurusan") Long idJurusan, @Valid Mahasiswa mahasiswa) {
+        return mahasiswaService.createMahasiswaIdJurusan(idJurusan, mahasiswa);
     }
 
+    @POST
+    @Path("{idMatakuliah}/mahasiswalist/{idMahasiswa}")
+    @Operation(summary = "createMatakuliah - Mahasiswa", 
+               description = "Method/function ini adalah create/insert data mahasiswa berdasarkan id kedalam id matakuliah")
+    public Response addMatakuliah(@PathParam("idMahasiswa") Long idMahasiswa, @PathParam("idMatakuliah") Long idMatakuliah) {
+        return  mahasiswaService.addMahasiswaIdMahasiswaIdJurusan(idMahasiswa, idMatakuliah);
+    } 
+
     @PUT
-    @Path("{npmMahasiswa}")
+    @Path("{npm}")
     @Operation(summary = "Update Mahasiswa", 
                description = "Method/function ini adalah untuk update mahasiswa berdasarkan npm")
-    public Response update(@PathParam("npmMahasiswa") String npm, @Valid Mahasiswa mahasiswa) {
+    public Response update(@PathParam("npm") String npm, @Valid Mahasiswa mahasiswa) {
         return mahasiswaService.update(npm, mahasiswa);
     }
 

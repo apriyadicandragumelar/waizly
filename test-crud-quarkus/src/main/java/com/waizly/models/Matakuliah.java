@@ -1,7 +1,5 @@
 package com.waizly.models;
 
-import java.util.List;
-
 import javax.persistence.*;
 import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -24,13 +22,6 @@ public class Matakuliah extends PanacheEntityBase {
 
     @Column(name = "jumlah_sks")
     private String jumlahSKS;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "mahasiswa_kuliah", joinColumns = 
-    @JoinColumn(name = "kuliah_id", referencedColumnName = "id"),inverseJoinColumns = 
-    @JoinColumn(name = "mahasiswa_id", referencedColumnName = "id"))
-    public List <Mahasiswa> mahasiswaList;
-
 
     @JsonGetter
     public Long getId(){
@@ -57,13 +48,4 @@ public class Matakuliah extends PanacheEntityBase {
     public void setJumlahSKS(String jumlahSKS) {
         this.jumlahSKS = jumlahSKS;
     }
-
-    // public List<Mahasiswa> getMahasiswaList() {
-    //     return mahasiswaList;
-    // }
-
-    // public void setMahasiswaList(List<Mahasiswa> mahasiswaList) {
-    //     this.mahasiswaList = mahasiswaList;
-    // }
-
 }

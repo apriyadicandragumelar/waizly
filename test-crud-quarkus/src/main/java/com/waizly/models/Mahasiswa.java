@@ -1,5 +1,7 @@
 package com.waizly.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -32,6 +34,12 @@ public class Mahasiswa extends PanacheEntityBase {
 
     @NotBlank(message = "alamat ist required")
     private String alamat;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "mahasiswa_kuliah", joinColumns = 
+    @JoinColumn(name = "mahasiswa_id", referencedColumnName = "id"),inverseJoinColumns = 
+    @JoinColumn(name = "kuliah_id", referencedColumnName = "id"))
+    private List <Matakuliah> matakuliahList;
 
     @JsonGetter
     public Long getId(){
@@ -73,5 +81,14 @@ public class Mahasiswa extends PanacheEntityBase {
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
-    }   
+    }
+
+    public List<Matakuliah> getMatakuliahList() {
+        return matakuliahList;
+    }
+
+    public void setMatakuliahList(List<Matakuliah> matakuliahList) {
+        this.matakuliahList = matakuliahList;
+    } 
+       
 }
